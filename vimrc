@@ -12,7 +12,7 @@ set modelines=0
 set tabstop=4
 set shiftwidth=4
 set softtabstop=4
-set expandtab
+set noexpandtab
 set scrolloff=3
 set autoindent
 set showmatch
@@ -32,6 +32,7 @@ set background=dark
 
 inoremap jk <ESC>
 let mapleader = ","
+nnoremap <leader>jd :YcmCompleter GoTo<CR>
 
 
 " Spelling
@@ -43,4 +44,8 @@ highlight clear SpellRare
 highlight SpellRare term=underline cterm=underline
 highlight clear SpellLocal
 highlight SepllLocal term=underline cterm=underline
+
+" Commands
+autocmd FileType html set omnifunc=htmlcomplete#CompleteTags
+autocmd FileType ctp set omnifunc=htmlcomplete#CompleteTags
 
