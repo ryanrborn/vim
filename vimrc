@@ -49,3 +49,4 @@ highlight SepllLocal term=underline cterm=underline
 autocmd FileType html set omnifunc=htmlcomplete#CompleteTags
 autocmd FileType ctp set omnifunc=htmlcomplete#CompleteTags
 
+
