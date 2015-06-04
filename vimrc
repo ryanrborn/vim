@@ -19,6 +19,7 @@ set showmatch
 set wrap
 set linebreak
 set number
+set noswapfile
 " set colorcolumn=80
 
 " Aesthetics
