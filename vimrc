@@ -35,6 +35,10 @@ inoremap jk <ESC>
 let mapleader = ","
 nnoremap <leader>jd :YcmCompleter GoTo<CR>
 
+" Maps
+vmap ,/ :s/^/\/\//<CR>:noh<CR>
+vmap ,# :s/^/#/<CR>:noh<CR>
+
 
 " Spelling
 highlight clear SpellBad
@@ -50,4 +54,5 @@ highlight SepllLocal term=underline cterm=underline
 autocmd FileType html set omnifunc=htmlcomplete#CompleteTags
 autocmd FileType ctp set omnifunc=htmlcomplete#CompleteTags
 
+" tests
 
