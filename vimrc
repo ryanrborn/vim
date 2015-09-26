@@ -18,8 +18,10 @@ set autoindent
 set showmatch
 set wrap
 set linebreak
-set number
+set relativenumber
 set noswapfile
+set splitbelow
+set splitright
 " set colorcolumn=80
 
 " Aesthetics
@@ -35,9 +37,27 @@ inoremap jk <ESC>
 let mapleader = ","
 nnoremap <leader>jd :YcmCompleter GoTo<CR>
 
-" Maps
-vmap ,/ :s/^/\/\//<CR>:noh<CR>
-vmap ,# :s/^/#/<CR>:noh<CR>
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
+
+" Visual Maps
+vnoremap <silent> ,! :s/^ \?/!/<CR>:noh<CR>
+vnoremap <silent> ," :s/^ \?/\"/<CR>:noh<CR>
+vnoremap <silent> ,# :s/^ \?/#/<CR>:noh<CR>
+vnoremap <silent> ,% :s/^ \?/%/<CR>:noh<CR>
+vnoremap <silent> ,; :s/^ \?/;/<CR>:noh<CR>
+vnoremap <silent> ,/ :s/^\(  \)\?/\/\//<CR>:noh<CR>
+vnoremap <silent> ,- :s/^\(  \)\?/--/<CR>:noh<CR>
+vnoremap <silent> ,> :s/^\(  \)\?/> /<CR>:noh<CR>
+
+vmap # ,#
+vmap ; ,;
+vmap / ,/
+vmap - ,-
+
+vnoremap ,c :s/^\s*\([!"#%;]\\|\/\/\\|--\\|> \\|\/\*\\|<!--\)//<CR>:'<,'>s/\s*\(\*\/\\|-->\\|\)\s*$//<CR>:noh<CR>`<=`>
 
 
 " Spelling
