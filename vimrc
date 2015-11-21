@@ -1,6 +1,7 @@
 " Vim Configuration
 
 execute pathogen#infect()
+call pathogen#helptags()
 
 filetype plugin indent on
 syntax on
@@ -36,7 +37,9 @@ set background=dark
 inoremap jk <ESC>
 let mapleader = ","
 nnoremap <leader>jd :YcmCompleter GoTo<CR>
+map <leader>f :Explore<cr>
 
+" Normal Mode Maps
 nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
@@ -73,6 +76,9 @@ highlight SepllLocal term=underline cterm=underline
 " Commands
 autocmd FileType html set omnifunc=htmlcomplete#CompleteTags
 autocmd FileType ctp set omnifunc=htmlcomplete#CompleteTags
+
+" YCM
+let g:ycm_collect_identifiers_from_tags_files = 1
 
 " tests
 
