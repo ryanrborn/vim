@@ -79,6 +79,7 @@ autocmd FileType ctp set omnifunc=htmlcomplete#CompleteTags
 
 " YCM
 let g:ycm_collect_identifiers_from_tags_files = 1
+let g:ycm_extra_conf_globlist = ['~/.ycm_extra_conf.py']
 
 " tests
 
