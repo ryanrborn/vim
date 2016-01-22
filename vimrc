@@ -1,9 +1,7 @@
 " Vim Configuration
 
-execute pathogen#infect()
-
-filetype plugin indent on
 syntax on
+
 set encoding=utf-8
 set spell spelllang=en_us
 set guifont=Menlo:h14
@@ -23,6 +21,17 @@ set noswapfile
 set splitbelow
 set splitright
 " set colorcolumn=80
+
+" Vundle Plugins
+filetype off
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+Plugin 'VundleVim/Vundle.vim'
+Plugin 'Valloric/YouCompleteMe'
+Plugin 'ctrlpvim/ctrlp.vim'
+
+call vundle#end()
+filetype plugin indent on
 
 " Aesthetics
 
