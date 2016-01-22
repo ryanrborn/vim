@@ -45,7 +45,9 @@ set background=dark
 inoremap jk <ESC>
 let mapleader = ","
 nnoremap <leader>jd :YcmCompleter GoTo<CR>
+map <leader>f :Explore<cr>
 
+" Normal Mode Maps
 nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
@@ -68,7 +70,6 @@ vmap - ,-
 
 vnoremap ,c :s/^\s*\([!"#%;]\\|\/\/\\|--\\|> \\|\/\*\\|<!--\)//<CR>:'<,'>s/\s*\(\*\/\\|-->\\|\)\s*$//<CR>:noh<CR>`<=`>
 
-
 " Spelling
 highlight clear SpellBad
 highlight SpellBad term=standout ctermfg=red term=underline cterm=underline
@@ -83,5 +84,28 @@ highlight SepllLocal term=underline cterm=underline
 autocmd FileType html set omnifunc=htmlcomplete#CompleteTags
 autocmd FileType ctp set omnifunc=htmlcomplete#CompleteTags
 
+" YCM
+let g:ycm_collect_identifiers_from_tags_files = 1
+let g:ycm_extra_conf_globlist = ['~/.ycm_extra_conf.py']
+
 " tests
+
+function! Angular2Ignore()
+	let g:ctrlp_custom_ignore = {
+				\ 'dir': '\v[\/](\.?(node_modules|sass_cache|platforms)|(plugins?))$',
+				\ 'file': '\v((\.js(\.map)?)|empty)$'
+				\ }
+endfunction
+
+" autocmd
+function! SetupEnvironment()
+	let l:path = expand('%:p')
+	if l:path =~ '/srv/http/crewtracks/cordova'
+		call Angular2Ignore()
+	endif
+	if l:path =~ '/srv/http/docntrack/cordova-app'
+		call Angular2Ignore()
+	endif
+endfunction
+autocmd! BufReadPost,BufNewFile * call SetupEnvironment()
 
