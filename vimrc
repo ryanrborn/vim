@@ -62,7 +62,6 @@ vmap - ,-
 
 vnoremap ,c :s/^\s*\([!"#%;]\\|\/\/\\|--\\|> \\|\/\*\\|<!--\)//<CR>:'<,'>s/\s*\(\*\/\\|-->\\|\)\s*$//<CR>:noh<CR>`<=`>
 
-
 " Spelling
 highlight clear SpellBad
 highlight SpellBad term=standout ctermfg=red term=underline cterm=underline
@@ -81,4 +80,23 @@ autocmd FileType ctp set omnifunc=htmlcomplete#CompleteTags
 let g:ycm_collect_identifiers_from_tags_files = 1
 
 " tests
+
+function! Angular2Ignore()
+	let g:ctrlp_custom_ignore = {
+				\ 'dir': '\v[\/](\.?(node_modules|sass_cache|platforms)|(plugins?))$',
+				\ 'file': '\v((\.js(\.map)?)|empty)$'
+				\ }
+endfunction
+
+" autocmd
+function! SetupEnvironment()
+	let l:path = expand('%:p')
+	if l:path =~ '/srv/http/crewtracks/cordova'
+		call Angular2Ignore()
+	endif
+	if l:path =~ '/srv/http/docntrack/cordova-app'
+		call Angular2Ignore()
+	endif
+endfunction
+autocmd! BufReadPost,BufNewFile * call SetupEnvironment()
 
