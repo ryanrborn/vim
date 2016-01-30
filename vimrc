@@ -91,7 +91,7 @@ let g:ycm_extra_conf_globlist = ['~/.ycm_extra_conf.py']
 
 " tests
 
-function! Angular2Ignore()
+function! TypescriptProject()
 	let g:ctrlp_custom_ignore = {
 				\ 'dir': '\v[\/](\.?(node_modules|sass_cache|platforms)|(plugins?))$',
 				\ 'file': '\v((\.js(\.map)?)|empty)$'
@@ -102,10 +102,13 @@ endfunction
 function! SetupEnvironment()
 	let l:path = expand('%:p')
 	if l:path =~ '/srv/http/crewtracks/cordova'
-		call Angular2Ignore()
+		call TypescriptProject()
 	endif
 	if l:path =~ '/srv/http/docntrack/cordova-app'
-		call Angular2Ignore()
+		call TypescriptProject()
+	endif
+	if l:path =~ '/home/ryan/Dropbox/Ryan/School/CurrentClasses/cs5200/player'
+		call TypescriptProject()
 	endif
 endfunction
 autocmd! BufReadPost,BufNewFile * call SetupEnvironment()
