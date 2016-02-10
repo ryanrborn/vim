@@ -20,6 +20,7 @@ set relativenumber
 set noswapfile
 set splitbelow
 set splitright
+set incsearch
 " set colorcolumn=80
 
 " Vundle Plugins
@@ -30,6 +31,8 @@ Plugin 'VundleVim/Vundle.vim'
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'leafgarland/typescript-vim'
+Plugin 'tpope/vim-dispatch'
+Plugin 'tpope/vim-surround'
 
 call vundle#end()
 filetype plugin indent on
@@ -89,13 +92,32 @@ autocmd FileType ctp set omnifunc=htmlcomplete#CompleteTags
 let g:ycm_collect_identifiers_from_tags_files = 1
 let g:ycm_extra_conf_globlist = ['~/.ycm_extra_conf.py']
 
-" tests
+" Environment Setups
+
+map <F5> :Make!<CR>
+
+function! BuildTypescript()
+	set makeprg=tsc
+	execute "Make"
+endfunction
 
 function! TypescriptProject()
 	let g:ctrlp_custom_ignore = {
-				\ 'dir': '\v[\/](\.?(node_modules|sass_cache|platforms)|(plugins?))$',
+				\ 'dir': '\v[\/](\.?(node_modules|sass_cache|platforms|typings)|(plugins?))$',
 				\ 'file': '\v((\.js(\.map)?)|empty)$'
 				\ }
+	command! BuildTsc call BuildTypescript()
+	map <F5> :BuildTsc<CR>
+endfunction
+
+function! BuildCordova()
+	set makeprg=cordova\ run\ android
+	execute "Make!"
+endfunction
+
+function! CordovaProject()
+	command! BuildC call BuildCordova()
+	map <F4> :BuildC<CR>
 endfunction
 
 " autocmd
@@ -103,9 +125,11 @@ function! SetupEnvironment()
 	let l:path = expand('%:p')
 	if l:path =~ '/srv/http/crewtracks/cordova'
 		call TypescriptProject()
+		call CordovaProject()
 	endif
 	if l:path =~ '/srv/http/docntrack/cordova-app'
 		call TypescriptProject()
+		call CordovaProject()
 	endif
 	if l:path =~ '/home/ryan/Dropbox/Ryan/School/CurrentClasses/cs5200/player'
 		call TypescriptProject()
