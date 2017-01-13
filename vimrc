@@ -22,6 +22,9 @@ set splitbelow
 set splitright
 set incsearch
 set exrc
+set listchars=eol:\ ,tab:╾-,space:·
+hi SpecialKey ctermfg=DarkGray
+set list
 " set colorcolumn=80
 
 " Vundle Plugins
