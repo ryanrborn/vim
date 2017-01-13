@@ -25,6 +25,7 @@ set exrc
 set listchars=eol:\ ,tab:╾-,space:·
 hi SpecialKey ctermfg=DarkGray
 set list
+set laststatus=2
 " set colorcolumn=80
 
 " Vundle Plugins
