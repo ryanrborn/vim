@@ -16,7 +16,7 @@ set autoindent
 set showmatch
 set wrap
 set linebreak
-set relativenumber
+set relativenumber number
 set noswapfile
 set splitbelow
 set splitright
@@ -99,66 +99,8 @@ let g:ycm_collect_identifiers_from_tags_files = 1
 let g:ycm_extra_conf_globlist = ['~/.ycm_extra_conf.py']
 
 " localvimrc
-let g:localvimrc_whitelist='\(/home/ryan/dev/.*\|/home/ryan/Dropbox/Ryan/School/CurrentClasses/.*\|/srv/http/.*\)'
+let g:localvimrc_whitelist='\(/home/ryan/dev/.*\|/srv/http/.*\)'
 let g:localvimrc_sandbox=0
-
-" Environment Setups
-
-map <F5> :Make!<CR>
-
-function! BuildTypescript()
-	set makeprg=tsc
-	execute "Make"
-endfunction
-
-function! BuildCordova()
-	set makeprg=cordova\ run\ android
-	execute "Make!"
-endfunction
-
-function! BuildAngular()
-	set makeprg=npm\ run\ js
-	execute "Make!"
-endfunction
-
-function! BuildScss()
-	set makeprg=npm\ run\ sass
-	execute "Make!"
-endfunction
-
-function! Preprocess()
-	set makeprg=npm\ run\ pp
-	execute "Make!"
-endfunction
-
-function! TypescriptProject()
-	let g:ctrlp_custom_ignore = {
-				\ 'dir': '\v[\/](\.?(node_modules|sass_cache|platforms|typings)|(plugins?))$',
-				\ 'file': '\v((\.js(\.map)?)|empty)$'
-				\ }
-	command! BuildTsc call BuildTypescript()
-	command! BuildS call BuildScss()
-	map <F5> :BuildTsc<CR>
-	map <F4> :BuildS<CR>
-endfunction
-
-function! CordovaProject()
-	command! BuildC call BuildCordova()
-	map <F2> :BuildC<CR>
-endfunction
-
-function! Angular1Project()
-	let g:ctrlp_custom_ignore = {
-				\ 'dir': '\v[\/](\.?(node_modules|sass_cache|app))$',
-				\ 'file': '\v[\/](empty|\.keep)$'
-				\ }
-	command! BuildAng call BuildAngular()
-	command! BuildS call BuildScss()
-	command! Prep call Preprocess()
-	map <F5> :BuildAng<CR>
-	map <F4> :BuildS<CR>
-	map <F3> :Prep<CR>
-endfunction
 
 set secure
 
